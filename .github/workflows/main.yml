@@ -614,6 +614,9 @@ jobs:
           workflow_inputs: '{"commit": "${{ github.ref }}", "sha": "${{ github.event.pull_request.head.sha }}", "parent_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
           workflow_timeout_seconds: 300 # was 120  Default: 300
 
+      - name: Release
+        run: echo "https://github.com/luxonis/depthai-core-hil-tests/actions/runs/${{steps.return_dispatch.outputs.run_id}}" >> $GITHUB_STEP_SUMMARY
+
       - uses: LouisBrunner/checks-action@v1.6.1
         if: failure() && github.event_name == 'pull_request'
         with:
